@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <NextUIProvider>
         <NavBar />
-        <InputComponents />
       </NextUIProvider>
     </div>
   );
