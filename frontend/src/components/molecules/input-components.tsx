@@ -1,4 +1,6 @@
+import AppButton from "../atoms/button";
 import Inputfield from "../atoms/inputfield";
+import styled from "styled-components";
 
 function InputComponents() {
   return (
@@ -8,6 +10,9 @@ function InputComponents() {
       </div>
       <div>
         <Inputfield label="Password" placeholder="as" isPassword={true} />
+      </div>
+      <div>
+        <AppButton label="Register" />
       </div>
     </div>
   );
