@@ -1,7 +1,13 @@
 import InputComponents from "../molecules/input-components";
 
 function LoginPage() {
-  return <InputComponents />;
+  return (
+    <div>
+      <br />
+      <h1>Login</h1>
+      <InputComponents />
+    </div>
+  );
 }
 
 export default LoginPage;

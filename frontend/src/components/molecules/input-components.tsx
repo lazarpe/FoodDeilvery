@@ -6,10 +6,14 @@ function InputComponents() {
   return (
     <div>
       <div>
-        <Inputfield label="Username" placeholder="Guilierme Hansa" />
+        <Inputfield label="Username" placeholder="Peter Sunny" />
       </div>
       <div>
-        <Inputfield label="Password" placeholder="as" isPassword={true} />
+        <Inputfield
+          label="Password"
+          placeholder="*********"
+          isPassword={true}
+        />
       </div>
       <div>
         <AppButton label="Register" />

@@ -18,8 +18,8 @@ function App() {
       <BrowserRouter>
         <NextUIProvider>
           <NavBar />
-          <LandingScreen />
           <Routes>
+            <Route path="/" element={<LandingScreen />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes>

@@ -1,7 +1,13 @@
 import InputComponents from "../molecules/input-components";
 
 function RegisterPage() {
-  return <InputComponents />;
+  return (
+    <div>
+      <br />
+      <h1>Registration</h1>
+      <InputComponents />
+    </div>
+  );
 }
 
 export default RegisterPage;
