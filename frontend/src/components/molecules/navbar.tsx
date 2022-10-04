@@ -5,15 +5,15 @@ export default function NavBar() {
     <Navbar isBordered variant="floating">
       <Navbar.Brand>
         <Text b color="inherit" hideIn="xs">
-          Foody
+          <Link href="/">Foody</Link>
         </Text>
       </Navbar.Brand>
       <Navbar.Content>
-        <Navbar.Link color="inherit" href="#">
+        <Navbar.Link color="inherit" href="/login">
           Login
         </Navbar.Link>
         <Navbar.Item>
-          <Button auto flat as={Link} href="#">
+          <Button auto flat as={Link} href="/register">
             Sign Up
           </Button>
         </Navbar.Item>
