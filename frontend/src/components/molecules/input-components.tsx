@@ -10,7 +10,7 @@ function InputComponents({ buttonLabel }: InputComponentsProps) {
   return (
     <div>
       <div>
-        <Inputfield label="Username" placeholder="Peter Sunny" />
+        <Inputfield label="Username" placeholder="peter_sunny" />
       </div>
       <div>
         <Inputfield

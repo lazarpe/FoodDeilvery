@@ -14,7 +14,7 @@ export default function NavBar() {
         </Navbar.Link>
         <Navbar.Item>
           <Button auto flat as={Link} href="/register">
-            Sign Up
+            Registration
           </Button>
         </Navbar.Item>
       </Navbar.Content>
