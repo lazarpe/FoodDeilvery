@@ -5,7 +5,7 @@ function RegisterPage() {
     <div>
       <br />
       <h1>Registration</h1>
-      <InputComponents />
+      <InputComponents buttonLabel="Register" />
     </div>
   );
 }

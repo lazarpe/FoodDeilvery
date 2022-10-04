@@ -2,7 +2,11 @@ import AppButton from "../atoms/button";
 import Inputfield from "../atoms/inputfield";
 import styled from "styled-components";
 
-function InputComponents() {
+interface InputComponentsProps {
+  buttonLabel: string;
+}
+
+function InputComponents({ buttonLabel }: InputComponentsProps) {
   return (
     <div>
       <div>
@@ -16,7 +20,7 @@ function InputComponents() {
         />
       </div>
       <div>
-        <AppButton label="Register" />
+        <AppButton label={buttonLabel} />
       </div>
     </div>
   );
