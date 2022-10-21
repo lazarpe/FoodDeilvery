@@ -1,5 +1,6 @@
 package com.petrovic.fooddeliveryapi.controllers;
 
+import com.petrovic.fooddeliveryapi.exceptions.LoginException;
 import com.petrovic.fooddeliveryapi.models.AppUser;
 import com.petrovic.fooddeliveryapi.services.AppUserService;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class AppUserController {
     }
 
     @PostMapping("/register")
-    public AppUser saveUser(@RequestBody AppUser appUser) {
+    public AppUser saveUser(@RequestBody AppUser appUser) throws LoginException {
         System.out.println("Got register request with payload of " + appUser.toString());
         return appUserService.saveAppUser(appUser);
     }
