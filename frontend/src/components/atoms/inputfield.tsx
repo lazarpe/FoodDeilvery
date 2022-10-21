@@ -2,24 +2,42 @@ import { Input } from "@nextui-org/react";
 import styled from "styled-components";
 
 interface InputfieldProps {
+  value?: string;
   label: string;
   placeholder: string;
   isPassword?: boolean;
+  onChangeText?: (text: string) => void;
 }
 
-function Inputfield({ label, placeholder, isPassword }: InputfieldProps) {
+function Inputfield({
+  value,
+  label,
+  placeholder,
+  isPassword,
+  onChangeText = () => {},
+}: InputfieldProps) {
   if (isPassword) {
     return (
       <View>
         <label>{label}</label>
-        <Input.Password placeholder={placeholder} style={InputfieldStyle} />
+        <Input.Password
+          value={value}
+          placeholder={placeholder}
+          style={InputfieldStyle}
+          onChange={(e) => onChangeText(e.target.value)}
+        />
       </View>
     );
   }
   return (
     <View>
       <label>{label}</label>
-      <Input placeholder={placeholder} style={InputfieldStyle} />
+      <Input
+        value={value}
+        placeholder={placeholder}
+        style={InputfieldStyle}
+        onChange={(e) => onChangeText(e.target.value)}
+      />
     </View>
   );
 }

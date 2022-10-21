@@ -5,7 +5,7 @@ function LoginPage() {
     <div>
       <br />
       <h1>Login</h1>
-      <InputComponents buttonLabel="Login"/>
+      <InputComponents buttonLabel="Login" />
     </div>
   );
 }
