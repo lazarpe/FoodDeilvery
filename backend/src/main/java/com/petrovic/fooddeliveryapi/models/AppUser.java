@@ -19,7 +19,6 @@ public class AppUser {
         private String name;
         public String email;
         private String password;
-        private String profilePictureUrl;
 
         @PrePersist
         public void prePersist() {
@@ -29,10 +28,5 @@ public class AppUser {
             // encrypt password
             if (password != null)
                 password = BCrypt.hashpw(password, BCrypt.gensalt());
-/*
-        password = passwordEncoder.encode(password);
-*/
-
         }
-
 }
