@@ -14,7 +14,7 @@ public interface AppUserService {
 
     AppUser saveAppUser(AppUser appUser) throws LoginException;
 
-    AppUser loginAppUser(AppUser appUser);
+    AppUser loginAppUser(AppUser appUser) throws LoginException;
 
     AppUser validateUserLogin(AppUser appUser);
 

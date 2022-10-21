@@ -5,6 +5,7 @@ import com.petrovic.fooddeliveryapi.models.AppUser;
 import com.petrovic.fooddeliveryapi.repositories.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,36 +20,21 @@ public class AppUserServiceImpl implements AppUserService {
         this.appUserRepository = appUserRepository;
     }
 
-    /**
-     * @return 
-     */
     @Override
     public List<AppUser> getAllAppUsers() {
         return appUserRepository.findAll();
     }
 
-    /**
-     * @param id 
-     * @return
-     */
     @Override
     public AppUser getAppUserById(String id) {
         return appUserRepository.findById(id).orElse(null);
     }
 
-    /**
-     * @param email 
-     * @return
-     */
     @Override
     public AppUser getAppUserByEmail(String email) {
         return appUserRepository.findAppUserByEmail(email).orElse(null);
     }
 
-    /**
-     * @param appUser 
-     * @return
-     */
     @Override
     public AppUser saveAppUser(AppUser appUser) throws LoginException {
         if (appUserRepository.findAppUserByEmail(appUser.getEmail()).isPresent()) {
@@ -57,28 +43,29 @@ public class AppUserServiceImpl implements AppUserService {
         return appUserRepository.save(appUser);
     }
 
-    /**
-     * @param appUser 
-     * @return
-     */
     @Override
-    public AppUser loginAppUser(AppUser appUser) {
-        return null;
+    public AppUser loginAppUser(AppUser appUser) throws LoginException {
+        AppUser dbUser;
+        if (appUser.getId() == null) {
+            dbUser = appUserRepository.findAppUserByEmail(appUser.getEmail()).orElse(null);
+        } else {
+            dbUser = appUserRepository.findById(appUser.getId()).orElse(null);
+        }
+
+        if (dbUser == null) {
+            throw new LoginException(HttpStatus.NOT_FOUND, "User with email " + appUser.getEmail() + " does not exist. Please register!");
+        }
+        if (!BCrypt.checkpw(appUser.getPassword(), dbUser.getPassword())) {
+            throw new LoginException(HttpStatus.UNAUTHORIZED, "Incorrect password!");
+        }
+        return dbUser;
     }
 
-    /**
-     * @param appUser 
-     * @return
-     */
     @Override
     public AppUser validateUserLogin(AppUser appUser) {
         return null;
     }
 
-    /**
-     * @param appUser 
-     * @return
-     */
     @Override
     public AppUser editAppUser(AppUser appUser) {
         return null;
