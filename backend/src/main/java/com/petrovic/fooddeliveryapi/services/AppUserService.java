@@ -16,7 +16,5 @@ public interface AppUserService {
 
     AppUser loginAppUser(AppUser appUser) throws LoginException;
 
-    AppUser validateUserLogin(AppUser appUser);
-
     AppUser editAppUser(AppUser appUser);
 }

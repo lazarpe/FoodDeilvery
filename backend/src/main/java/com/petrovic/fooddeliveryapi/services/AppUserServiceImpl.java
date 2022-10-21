@@ -62,11 +62,6 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public AppUser validateUserLogin(AppUser appUser) {
-        return null;
-    }
-
-    @Override
     public AppUser editAppUser(AppUser appUser) {
         return null;
     }
