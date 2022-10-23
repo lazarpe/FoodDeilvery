@@ -36,4 +36,11 @@ public class AppUserController {
         System.out.println("Got register request with payload of " + appUser.toString());
         return appUserService.saveAppUser(appUser);
     }
+
+    @CrossOrigin
+    @PostMapping("/login")
+    public AppUser loginUser(@RequestBody AppUser appUser) throws LoginException {
+        System.out.println("Got login request with payload of " + appUser.toString());
+        return appUserService.loginAppUser(appUser);
+    }
 }
