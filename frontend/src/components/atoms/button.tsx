@@ -5,7 +5,7 @@ interface AppButtonProps {
   onClick?: () => void;
 }
 
-export default function AppButton({ label }: AppButtonProps) {
+export default function AppButton({ label, onClick }: AppButtonProps) {
   return (
     <Button
       style={{
@@ -16,6 +16,7 @@ export default function AppButton({ label }: AppButtonProps) {
         flexDirection: "column",
         left: "30%",
       }}
+      onClick={onClick}
     >
       {label}
     </Button>
