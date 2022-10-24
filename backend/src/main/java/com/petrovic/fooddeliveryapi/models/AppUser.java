@@ -2,9 +2,10 @@ package com.petrovic.fooddeliveryapi.models;
 
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.UUID;
 
 @Entity(name = "users")
@@ -19,6 +20,10 @@ public class AppUser {
         private String name;
         public String email;
         private String password;
+
+        @ManyToMany(fetch = FetchType.EAGER)
+        @JoinColumn(name = "role_id")
+        private Collection<Role> roles = new ArrayList<>();
 
         @PrePersist
         public void prePersist() {

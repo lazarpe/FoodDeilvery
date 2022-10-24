@@ -4,6 +4,8 @@ import com.petrovic.fooddeliveryapi.exceptions.LoginException;
 import com.petrovic.fooddeliveryapi.models.AppUser;
 import com.petrovic.fooddeliveryapi.services.AppUserService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,32 +17,32 @@ public class AppUserController {
     private final AppUserService appUserService;
 
     @GetMapping("/")
-    public List<AppUser> getAllAppUsers() {
-        return appUserService.getAllAppUsers();
+    public ResponseEntity<List<AppUser>> getAllAppUsers() {
+        return ResponseEntity.ok().body(appUserService.getAllAppUsers());
     }
 
     @GetMapping("/{id}")
-    public AppUser getAppUserById(@PathVariable String id) {
-        return appUserService.getAppUserById(id);
+    public ResponseEntity<AppUser> getAppUserById(@PathVariable String id) {
+        return ResponseEntity.ok().body(appUserService.getAppUserById(id));
     }
 
     // Get appuser by email
     @GetMapping("/email/{email}")
-    public AppUser getAppUserByEmail(@PathVariable String email) {
-        return appUserService.getAppUserByEmail(email);
+    public ResponseEntity<AppUser> getAppUserByEmail(@PathVariable String email) {
+        return ResponseEntity.ok().body(appUserService.getAppUserByEmail(email));
     }
 
     @CrossOrigin
     @PostMapping("/register")
-    public AppUser saveUser(@RequestBody AppUser appUser) throws LoginException {
+    public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) throws LoginException {
         System.out.println("Got register request with payload of " + appUser.toString());
-        return appUserService.saveAppUser(appUser);
+        return ResponseEntity.ok().body(appUserService.saveAppUser(appUser));
     }
 
     @CrossOrigin
     @PostMapping("/login")
-    public AppUser loginUser(@RequestBody AppUser appUser) throws LoginException {
+    public ResponseEntity<AppUser> loginUser(@RequestBody AppUser appUser) throws LoginException {
         System.out.println("Got login request with payload of " + appUser.toString());
-        return appUserService.loginAppUser(appUser);
+        return ResponseEntity.ok().body(appUserService.loginAppUser(appUser));
     }
 }
