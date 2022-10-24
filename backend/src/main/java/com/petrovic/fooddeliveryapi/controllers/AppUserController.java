@@ -45,4 +45,6 @@ public class AppUserController {
         System.out.println("Got login request with payload of " + appUser.toString());
         return ResponseEntity.ok().body(appUserService.loginAppUser(appUser));
     }
+
+
 }
