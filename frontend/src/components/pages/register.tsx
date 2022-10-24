@@ -1,10 +1,10 @@
-import InputComponents from "../molecules/input-components";
 import * as yup from "yup";
 import Inputfield from "../atoms/inputfield";
 import AppButton from "../atoms/button";
 import React from "react";
 import { register } from "../../services/user_service";
 import { AppUser } from "../../models/user";
+import { useNavigate } from "react-router";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -13,6 +13,8 @@ const schema = yup.object().shape({
 });
 
 function RegisterPage() {
+  const navigation = useNavigate();
+
   const [data, setData] = React.useState({
     name: "",
     email: "",
@@ -21,15 +23,18 @@ function RegisterPage() {
 
   function requestRegistration() {
     console.log("Request registration");
-    schema
-      .validate(data)
-      .then(() => {
-        console.log("Input validated");
-        register(new AppUser(undefined, data.name, data.email, data.password));
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
+    register(new AppUser(undefined, data.name, data.email, data.password)).then(
+      (response) => {
+        if (response.ok) {
+          navigation("/");
+        } else {
+          console.log("didn't work proper");
+        }
+      }
+    );
+    schema.validate(data).catch((err) => {
+      console.log("Error", err);
+    });
   }
 
   return (

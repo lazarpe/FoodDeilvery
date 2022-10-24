@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { login } from "../../services/user_service";
 import { AppUser } from "../../models/user";
 import React from "react";
+import { useNavigate } from "react-router";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -11,22 +12,28 @@ const schema = yup.object().shape({
 });
 
 function LoginPage() {
+  const navigation = useNavigate();
+
   const [data, setData] = React.useState({
     email: "",
     password: "",
   });
 
   function requestLogin() {
+    login(new AppUser(undefined, undefined, data.email, data.password)).then(
+      (response) => {
+        if (response.ok) {
+          console.log("response is okeeee");
+          navigation("/");
+        } else {
+          console.log("didn't work proper");
+        }
+      }
+    );
     console.log("Request login");
-    schema
-      .validate(data)
-      .then(() => {
-        console.log("Input validated");
-        login(new AppUser(undefined, undefined, data.email, data.password));
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
+    schema.validate(data).catch((err) => {
+      console.log("Error", err);
+    });
   }
 
   return (
