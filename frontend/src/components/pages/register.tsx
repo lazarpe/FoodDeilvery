@@ -5,6 +5,7 @@ import AppButton from "../atoms/button";
 import React from "react";
 import { register } from "../../services/user_service";
 import { AppUser } from "../../models/user";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -13,6 +14,8 @@ const schema = yup.object().shape({
 });
 
 function RegisterPage() {
+  let navigate = useNavigate();
+
   const [data, setData] = React.useState({
     name: "",
     email: "",
@@ -25,7 +28,13 @@ function RegisterPage() {
       .validate(data)
       .then(() => {
         console.log("Input validated");
-        register(new AppUser(undefined, data.name, data.email, data.password));
+        register(
+          new AppUser(undefined, data.name, data.email, data.password)
+        ).then((value) => {
+          if (value.ok) {
+            navigate("/");
+          }
+        });
       })
       .catch((err) => {
         console.log("Error", err);
