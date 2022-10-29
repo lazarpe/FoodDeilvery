@@ -64,6 +64,13 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         if (!(appUserRepository.findAppUserByEmail(appUser.getEmail()) == null)) {
             throw new LoginException(HttpStatus.CONFLICT, "User with email " + appUser.getEmail() + " already exists. Please log in!");
         }
+        if (!(appUserRepository.findAppUserByName(appUser.getName()) == null)) {
+            throw new LoginException(HttpStatus.CONFLICT, "User with name " + appUser.getName() + " already exists. Please log in!");
+        }
+        if (appUser.getRoles().isEmpty()) {
+            Role role = roleRepository.findByName("ROLE_USER");
+            appUser.getRoles().add(role);
+        }
         return appUserRepository.save(appUser);
     }
 

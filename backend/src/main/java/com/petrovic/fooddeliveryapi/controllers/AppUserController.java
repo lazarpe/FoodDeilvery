@@ -39,12 +39,12 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.saveAppUser(appUser));
     }
 
-    @CrossOrigin
+    /*@CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<AppUser> loginUser(@RequestBody AppUser appUser) throws LoginException {
         System.out.println("Got login request with payload of " + appUser.toString());
         return ResponseEntity.ok().body(appUserService.loginAppUser(appUser));
-    }
+    }*/
 
 
 }
