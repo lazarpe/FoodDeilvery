@@ -11,7 +11,11 @@ const schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-function LoginPage() {
+type LoginProps = {
+  setIsLoggedIn: (value: boolean) => void;
+};
+
+function LoginPage(/*{ setIsLoggedIn }: LoginProps*/) {
   const navigation = useNavigate();
 
   const [data, setData] = React.useState({

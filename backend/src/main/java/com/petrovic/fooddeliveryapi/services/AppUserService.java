@@ -7,14 +7,9 @@ import java.util.List;
 
 public interface AppUserService {
     List<AppUser> getAllAppUsers();
-
     AppUser getAppUserById(String id);
-
     AppUser getAppUserByEmail(String email);
-
     AppUser saveAppUser(AppUser appUser) throws LoginException;
-
     AppUser loginAppUser(AppUser appUser) throws LoginException;
-
-    AppUser editAppUser(AppUser appUser);
+    void addRoleToUser(String appUserEmail, String roleName);
 }
