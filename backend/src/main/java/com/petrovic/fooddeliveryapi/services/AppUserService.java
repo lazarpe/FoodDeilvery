@@ -2,7 +2,6 @@ package com.petrovic.fooddeliveryapi.services;
 
 import com.petrovic.fooddeliveryapi.exceptions.LoginException;
 import com.petrovic.fooddeliveryapi.models.AppUser;
-import com.petrovic.fooddeliveryapi.models.Role;
 
 import java.util.List;
 
@@ -12,7 +11,5 @@ public interface AppUserService {
     AppUser getAppUserByEmail(String email);
     AppUser saveAppUser(AppUser appUser) throws LoginException;
     AppUser loginAppUser(AppUser appUser) throws LoginException;
-    AppUser editAppUser(AppUser appUser);
-    Role saveRole(Role role);
     void addRoleToUser(String appUserEmail, String roleName);
 }

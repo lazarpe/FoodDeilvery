@@ -9,5 +9,4 @@ public interface RoleService {
     Role findRoleById(String id);
     Role findRoleByName(String roleName);
     Role saveRole(Role role);
-    Role editRole(Role role);
 }

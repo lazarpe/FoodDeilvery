@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -68,24 +67,6 @@ public class AppUserServiceImpl implements AppUserService {
         return dbUser;
     }
 
-    @Override
-    public AppUser editAppUser(AppUser appUser) {
-        return null;
-    }
-
-    /**
-     * @param role 
-     * @return
-     */
-    @Override
-    public Role saveRole(Role role) {
-        return roleRepository.save(role);
-    }
-
-    /**
-     * @param appUserEmail
-     * @param roleName
-     */
     @Override
     public void addRoleToUser(String appUserEmail, String roleName) {
         AppUser appUser = appUserRepository.findAppUserByEmail(appUserEmail);

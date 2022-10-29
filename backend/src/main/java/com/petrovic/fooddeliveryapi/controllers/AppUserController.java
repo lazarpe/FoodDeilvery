@@ -4,7 +4,6 @@ import com.petrovic.fooddeliveryapi.exceptions.LoginException;
 import com.petrovic.fooddeliveryapi.models.AppUser;
 import com.petrovic.fooddeliveryapi.services.AppUserService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +16,7 @@ public class AppUserController {
     private final AppUserService appUserService;
 
     @GetMapping("/")
+    // @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<AppUser>> getAllAppUsers() {
         return ResponseEntity.ok().body(appUserService.getAllAppUsers());
     }
