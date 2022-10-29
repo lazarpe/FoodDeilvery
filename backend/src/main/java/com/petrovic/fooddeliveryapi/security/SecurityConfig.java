@@ -1,6 +1,7 @@
 package com.petrovic.fooddeliveryapi.security;
 
 import com.petrovic.fooddeliveryapi.filter.CustomAuthenticationFilter;
+import com.petrovic.fooddeliveryapi.filter.CustomAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -34,8 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers(POST, "/api/users/login/**").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/users/register/**").permitAll();
+        http.authorizeRequests().antMatchers(POST, "/api/token/refresh/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/users/**").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
+        http.addFilterBefore(new CustomAuthorizationFilter(), CustomAuthenticationFilter.class);
     }
 
     @Bean

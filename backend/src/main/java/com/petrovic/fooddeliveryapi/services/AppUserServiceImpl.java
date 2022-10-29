@@ -60,6 +60,11 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
     }
 
     @Override
+    public AppUser getAppUserByName(String name) {
+        return appUserRepository.findAppUserByName(name);
+    }
+
+    @Override
     public AppUser saveAppUser(AppUser appUser) throws LoginException {
         if (!(appUserRepository.findAppUserByEmail(appUser.getEmail()) == null)) {
             throw new LoginException(HttpStatus.CONFLICT, "User with email " + appUser.getEmail() + " already exists. Please log in!");
