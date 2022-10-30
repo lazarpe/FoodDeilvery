@@ -1,13 +1,13 @@
 export class AppUser {
   id: string | undefined;
-  name: string | undefined;
-  email: string;
+  name: string;
+  email: string | undefined;
   password: string;
 
   constructor(
     id: string | undefined,
-    name: string | undefined,
-    email: string,
+    name: string,
+    email: string | undefined,
     password: string
   ) {
     this.id = id;

@@ -7,7 +7,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
+  name: yup.string().required(),
   password: yup.string().required(),
 });
 
@@ -19,18 +19,18 @@ function LoginPage(/*{ setIsLoggedIn }: LoginProps*/) {
   const navigation = useNavigate();
 
   const [data, setData] = React.useState({
-    email: "",
+    name: "",
     password: "",
   });
 
   function requestLogin() {
-    login(new AppUser(undefined, undefined, data.email, data.password)).then(
+    login(new AppUser(undefined, data.name, undefined, data.password)).then(
       (response) => {
         if (response.ok) {
           console.log("response is okeeee");
           navigation("/");
         } else {
-          console.log("didn't work proper");
+          console.log("didn't work properly");
         }
       }
     );
@@ -47,10 +47,10 @@ function LoginPage(/*{ setIsLoggedIn }: LoginProps*/) {
       <div>
         <div>
           <Inputfield
-            label="Email"
-            placeholder="peter@sunny.com"
-            value={data.email}
-            onChangeText={(value) => setData({ ...data, email: value })}
+            label="Username"
+            placeholder="petersunny"
+            value={data.name}
+            onChangeText={(value) => setData({ ...data, name: value })}
           />
         </div>
         <div>

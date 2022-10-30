@@ -44,7 +44,6 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getAppUserByEmail(email));
     }
 
-    @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) throws LoginException {
         System.out.println("Got register request with payload of " + appUser.toString());
