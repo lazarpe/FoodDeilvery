@@ -24,6 +24,9 @@ public class AppUser {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
+    @OneToOne(mappedBy = "appUser")
+    private Customer customer;
+
     @PrePersist
     public void prePersist() {
         if (id == null) {

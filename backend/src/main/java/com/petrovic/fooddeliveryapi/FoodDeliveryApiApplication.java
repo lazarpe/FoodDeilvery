@@ -29,7 +29,7 @@ public class FoodDeliveryApiApplication {
                 roleService.saveRole(new Role(null, "ROLE_ADMIN"));
 
                 appUserService.saveAppUser(new AppUser(
-                        null, "admin", "admin@mail.com", "adminpw", new ArrayList<>()));
+                        null, "admin", "admin@mail.com", "adminpw", new ArrayList<>(), null));
 
                 appUserService.addRoleToUser("admin@mail.com", "ROLE_ADMIN");
                 appUserService.addRoleToUser("admin@mail.com", "ROLE_USER");
