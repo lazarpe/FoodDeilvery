@@ -7,37 +7,37 @@ import React from "react";
 import { useNavigate } from "react-router";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
+  name: yup.string().required(),
   password: yup.string().required(),
 });
 
-type LoginProps = {
-  setIsLoggedIn: (value: boolean) => void;
-};
-
-function LoginPage(/*{ setIsLoggedIn }: LoginProps*/) {
+function LoginPage() {
   const navigation = useNavigate();
 
   const [data, setData] = React.useState({
-    email: "",
+    name: "",
     password: "",
   });
 
   function requestLogin() {
-    login(new AppUser(undefined, undefined, data.email, data.password)).then(
-      (response) => {
-        if (response.ok) {
-          console.log("response is okeeee");
-          navigation("/");
-        } else {
-          console.log("didn't work proper");
-        }
-      }
-    );
-    console.log("Request login");
+    console.log("Requested login");
     schema.validate(data).catch((err) => {
       console.log("Error", err);
     });
+    login(new AppUser(undefined, data.name, undefined, data.password)).then(
+      (response) => {
+        if (response.ok) {
+          console.log("Login successful");
+          response.json().then((data) => {
+            console.log(data.access_token);
+            localStorage.setItem("access_token", data.access_token);
+          });
+          navigation("/");
+        } else {
+          console.log("Login failed");
+        }
+      }
+    );
   }
 
   return (
@@ -47,10 +47,10 @@ function LoginPage(/*{ setIsLoggedIn }: LoginProps*/) {
       <div>
         <div>
           <Inputfield
-            label="Email"
-            placeholder="peter@sunny.com"
-            value={data.email}
-            onChangeText={(value) => setData({ ...data, email: value })}
+            label="Username"
+            placeholder="petersunny"
+            value={data.name}
+            onChangeText={(value) => setData({ ...data, name: value })}
           />
         </div>
         <div>

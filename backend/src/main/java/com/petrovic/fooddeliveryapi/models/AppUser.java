@@ -22,7 +22,6 @@ public class AppUser {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
     private Collection<Role> roles = new ArrayList<>();
 
     @PrePersist
