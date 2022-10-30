@@ -20,9 +20,14 @@ export function login(appUser: AppUser) {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded", //"Content-Type": "application/json",
     },
-
-    //body: JSON.stringify(appUser),
     body: urlencoded,
-    //body: `email=${appUser.name}&password=${appUser.password}`,
   });
+}
+
+export function logout() {
+  localStorage.removeItem("access_token");
+}
+
+export function isLoggedIn() {
+  return localStorage.getItem("access_token") != null;
 }

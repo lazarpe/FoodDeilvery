@@ -23,18 +23,23 @@ function RegisterPage() {
 
   function requestRegistration() {
     console.log("Request registration");
+    schema.validate(data).catch((err) => {
+      console.log("Error", err);
+    });
     register(new AppUser(undefined, data.name, data.email, data.password)).then(
       (response) => {
         if (response.ok) {
+          console.log("Registration successful");
+          response.json().then((data) => {
+            console.log(data.access_token);
+            localStorage.setItem("access_token", data.access_token);
+          });
           navigation("/");
         } else {
           console.log("didn't work proper");
         }
       }
     );
-    schema.validate(data).catch((err) => {
-      console.log("Error", err);
-    });
   }
 
   return (
