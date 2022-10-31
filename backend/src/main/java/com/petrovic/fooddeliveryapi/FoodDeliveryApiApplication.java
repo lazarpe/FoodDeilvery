@@ -34,7 +34,6 @@ public class FoodDeliveryApiApplication {
                         null, "admin", "admin@mail.com", "adminpw", new ArrayList<>(), null));
 
                 appUserService.addRoleToUser("admin@mail.com", "ROLE_ADMIN");
-                appUserService.addRoleToUser("admin@mail.com", "ROLE_USER");
             }
             productService.saveProduct(new Product(
                     null,
