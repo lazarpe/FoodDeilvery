@@ -102,5 +102,6 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
         AppUser appUser = appUserRepository.findAppUserByEmail(appUserEmail);
         Role role = roleRepository.findByName(roleName);
         appUser.getRoles().add(role);
+        appUserRepository.save(appUser);
     }
 }

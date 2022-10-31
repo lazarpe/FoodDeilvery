@@ -21,7 +21,7 @@ public class AppUser {
     public String email;
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<Role> roles = new ArrayList<>();
 
     @OneToOne(mappedBy = "appUser")

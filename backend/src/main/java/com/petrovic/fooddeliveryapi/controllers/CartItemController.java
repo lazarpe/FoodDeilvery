@@ -22,12 +22,12 @@ public class CartItemController {
         cartItemService.getCartItemTotalPrice(cartItemService.getCartItemById(id));
     }
 
-    @GetMapping("/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     public void deleteCartItemById(@PathVariable String id) {
         cartItemService.deleteCartItemById(id);
     }
 
-    @GetMapping("/{id}/update")
+    @PutMapping("/{id}/update")
     public void updateCartItem(@RequestBody CartItem cartItem, @PathVariable String id) {
         cartItemService.updateCartItem(cartItem, id);
         ResponseEntity.ok().body("CartItem updated successfully");

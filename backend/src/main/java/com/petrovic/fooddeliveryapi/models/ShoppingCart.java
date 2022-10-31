@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "shopping_carts")
 @Setter
@@ -24,6 +25,13 @@ public class ShoppingCart {
     @JoinColumn(name = "shipping_address_id", nullable = false)
     private ShippingAddress shippingAddress;
 
-/*    @OneToMany
-    private Set<CartItem> cartItems;*/
+    @OneToMany(mappedBy = "shoppingCart")
+    private Set<CartItem> cartItems;
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 }
