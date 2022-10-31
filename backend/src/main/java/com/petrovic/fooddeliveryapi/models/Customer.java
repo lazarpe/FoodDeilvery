@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "customers")
 @Setter
@@ -21,4 +22,11 @@ public class Customer {
     private AppUser appUser;
     @OneToMany(mappedBy = "customer")
     private Set<ShoppingCart> shoppingCarts;
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 }

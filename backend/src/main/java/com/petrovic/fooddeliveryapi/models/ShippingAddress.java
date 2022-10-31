@@ -2,10 +2,9 @@ package com.petrovic.fooddeliveryapi.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "shipping_addresses")
 @Setter
@@ -21,6 +20,14 @@ public class ShippingAddress {
     private String zipcode;
     private String country;
 
+    // maybe have to add cascade type
     @OneToMany(mappedBy = "shippingAddress")
     private Set<ShoppingCart> shoppingCart;
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 }

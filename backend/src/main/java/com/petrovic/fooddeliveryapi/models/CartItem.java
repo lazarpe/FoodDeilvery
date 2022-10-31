@@ -1,12 +1,11 @@
 package com.petrovic.fooddeliveryapi.models;
 
 import lombok.*;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity(name = "cart_items")
 @Setter
@@ -21,9 +20,16 @@ public class CartItem {
     private float price;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
+    @JoinColumn(name = "product_id")
     private Product product;
     @ManyToOne
-    @JoinColumn(name = "shopping_cart_id", nullable = false)
+    @JoinColumn(name = "shopping_cart_id")
     private ShoppingCart shoppingCart;
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 }

@@ -2,10 +2,8 @@ package com.petrovic.fooddeliveryapi.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Set;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity(name = "products")
 @Setter
@@ -21,4 +19,11 @@ public class Product {
     private String imageUrl;
     private float price;
     private boolean isAvailable;
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 }
