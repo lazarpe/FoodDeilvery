@@ -44,6 +44,11 @@ public class AppUserController {
         return ResponseEntity.ok().body(appUserService.getAppUserByEmail(email));
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<AppUser> getAppUserByName(@PathVariable String name) {
+        return ResponseEntity.ok().body(appUserService.getAppUserByName(name));
+    }
+
     @PostMapping("/register")
     public ResponseEntity<AppUser> saveUser(@RequestBody AppUser appUser) throws LoginException {
         System.out.println("Got register request with payload of " + appUser.toString());

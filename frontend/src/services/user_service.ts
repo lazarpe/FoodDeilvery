@@ -1,4 +1,5 @@
 import { AppUser } from "../models/user";
+import jwtDecode from "jwt-decode";
 
 export function register(appUser: AppUser) {
   return fetch("http://localhost:8080/api/users/register", {
@@ -26,6 +27,26 @@ export function login(appUser: AppUser) {
 
 export function logout() {
   localStorage.removeItem("access_token");
+}
+
+// get user by name
+export function getUserByName() {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + localStorage.getItem("access_token"));
+
+    const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+    };
+    const token = jwtDecode(localStorage.getItem("access_token") || "{}");
+    // @ts-ignore
+    return fetch("http://localhost:8080/api/users/name/" + token.sub, requestOptions);
+}
+
+// get the current user from local storage
+export function getCurrentUser() {
+    return JSON.parse(localStorage.getItem("access_token")!);
 }
 
 export function isLoggedIn() {
