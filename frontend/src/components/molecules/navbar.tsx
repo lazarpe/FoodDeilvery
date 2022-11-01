@@ -12,14 +12,14 @@ export default function NavBar({value}: NavbarProps) {
 
 
     if (isLoggedIn()) {
-        getUserByName().then((response) => {
+        /*getUserByName().then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
                     //setUser(data.name);
-                    setUser({username: data.name, email: data.email});
+                    //setUser({username: data.name, email: data.email});
                 });
             }
-        });
+        });*/
         return (
             <Navbar isBordered variant="floating">
                 <Navbar.Brand>
@@ -32,9 +32,9 @@ export default function NavBar({value}: NavbarProps) {
                         <User
                             src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2231&q=80"
                             //name={user}
-                            name={user.username}
+                            name={localStorage.getItem("username")}
                         >
-                            <User.Link>{user.email}</User.Link>
+                            <User.Link>{localStorage.getItem("email")}</User.Link>
                         </User>
                     </Navbar.Item>
                     <Navbar.Item>

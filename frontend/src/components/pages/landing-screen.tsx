@@ -8,24 +8,21 @@ function LandingScreen() {
     const [user, setUser] = React.useState({username: "", email: ""});
 
     if (isLoggedIn()) {
-        getAllProducts().then((response) => {
+        /*getAllProducts().then((response) => {
             if (response.ok) {
-
-                /*React.useEffect(() => {
-                    response.json().then((data) => {
-                        setProducts(data);
-                    });
-                }, []);*/
+                // here is the problem with the request being sent endlessly.
+                // I think it's because of the state change
                 response.json().then((data) => {
                     console.log("asdf", data);
                 });
             }
-        });
+        });*/
 
         getUserByName().then((response) => {
             if (response.ok) {
                 response.json().then((data) => {
-                    setUser({username: data.name, email: data.email});
+
+                    //setUser({username: data.name, email: data.email});
                 });
             }
         });
@@ -38,12 +35,8 @@ function LandingScreen() {
             </div>
         );
     } else {
-        return (
-            <div>
-                <br/>
-                <h1>Refresh page to continue</h1>
-            </div>
-        );
+        document.location.reload();
+        return <></>;
     }
 }
 

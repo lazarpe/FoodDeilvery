@@ -27,6 +27,8 @@ export function login(appUser: AppUser) {
 
 export function logout() {
   localStorage.removeItem("access_token");
+  localStorage.removeItem("username");
+  localStorage.removeItem("email");
 }
 
 // get user by name
@@ -34,14 +36,16 @@ export function getUserByName() {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", "Bearer " + localStorage.getItem("access_token"));
 
-    const requestOptions = {
+    const token = jwtDecode(localStorage.getItem("access_token") || "{}");
+    // @ts-ignore
+    const username = token.sub;
+    console.log("getUserByName with sub: ", username);
+
+    return fetch("http://localhost:8080/api/users/name/" + username, {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",
-    };
-    const token = jwtDecode(localStorage.getItem("access_token") || "{}");
-    // @ts-ignore
-    return fetch("http://localhost:8080/api/users/name/" + token.sub, requestOptions);
+    });
 }
 
 // get the current user from local storage
