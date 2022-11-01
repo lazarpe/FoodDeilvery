@@ -16,7 +16,7 @@ function LandingScreen() {
                     console.log("asdf", data);
                 });
             }
-        });*/
+        });
 
         getUserByName().then((response) => {
             if (response.ok) {
@@ -25,7 +25,7 @@ function LandingScreen() {
                     //setUser({username: data.name, email: data.email});
                 });
             }
-        });
+        });*/
         return (
             <div>
                 <br/>
@@ -35,7 +35,7 @@ function LandingScreen() {
             </div>
         );
     } else {
-        document.location.reload();
+       // document.location.reload();
         return <></>;
     }
 }

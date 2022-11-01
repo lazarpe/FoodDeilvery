@@ -28,25 +28,18 @@ function LoginPage() {
             (response) => {
                 if (response.ok) {
                     console.log("Login successful");
-                    response.json().then((data) => {
+                    response.json().then(async (data) => {
                         console.log(data.access_token);
                         localStorage.setItem("access_token", data.access_token);
                         console.log("BEFORE LS");
-                        getUserByName().then((response) => {
-                            console.log("asdfasdfS");
-                            console.table(response);
-
-                            response.json().then((data) => {
-                                //setUser(data.name);
-                                console.log("SET USER DATA IN LOCALSTORAGE")
+                        const result = getUserByName().then((resp) => {
+                            resp.json().then((data) => {
+                                console.table(data);
                                 localStorage.setItem("username", data.name);
                                 localStorage.setItem("email", data.email);
-                                //setUser({username: data.name, email: data.email});
                             });
-                        }).catch((err) => {
-                            console.log("Error", err);
-                            throw err;
                         });
+                        console.table(result);
                         console.log("AFTER LS");
                         //
                     });
