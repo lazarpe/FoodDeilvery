@@ -29,6 +29,13 @@ export default function NavBar({value}: NavbarProps) {
                 </Navbar.Brand>
                 <Navbar.Content>
                     <Navbar.Item>
+                        <Button
+                            auto
+                            color="error">
+                            <Link href="/cart">Shopping cart</Link>
+                        </Button>
+                    </Navbar.Item>
+                    <Navbar.Item>
                         <User
                             src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2231&q=80"
                             //name={user}

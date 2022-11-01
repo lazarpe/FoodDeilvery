@@ -5,6 +5,7 @@ import {getUserByName, login} from "../../services/user_service";
 import {AppUser} from "../../models/user";
 import React from "react";
 import {useNavigate} from "react-router";
+import {Product} from "../../models/product";
 
 const schema = yup.object().shape({
     name: yup.string().required(),
@@ -28,6 +29,7 @@ function LoginPage() {
             (response) => {
                 if (response.ok) {
                     console.log("Login successful");
+                    localStorage.setItem("product_list", JSON.stringify([]));
                     response.json().then(async (data) => {
                         console.log(data.access_token);
                         localStorage.setItem("access_token", data.access_token);

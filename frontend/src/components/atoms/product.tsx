@@ -1,87 +1,90 @@
-import {Card, Grid, Row, Text} from "@nextui-org/react";
+import {Popover, Card, Grid, Row, Text, Button} from "@nextui-org/react";
 import {isLoggedIn} from "../../services/user_service";
-import {getAllProducts} from "../../services/product_service";
+import {addProductToLocalStorage, getAllProducts} from "../../services/product_service";
 import React, {useEffect} from "react";
 import {Product} from "../../models/product";
 
 export default function ProductCard() {
-    // let list: Product[] = [];
-
     const [list, setList] = React.useState<Product[]>([]);
+    const [productList, setProductList] = React.useState<Product[]>([]);
 
-    // if (isLoggedIn()) {
     useEffect(() => {
-            getAllProducts().then((response) => {
-                    if (response.ok) {
-                        response.json().then((data) => {
-                            setList(data);
-                            for (let i = 0; i < data.length; i++) {
-                                console.log("DATAAAA: ", i, data[i]);
-
-                                //setProducts(data[i]);
-                                /* setProducts({
-                                     "available": data[i].available,
-                                     "description": data[i].description,
-                                     "imageUrl": data[i].imageUrl,
-                                     "name": data[i].name,
-                                     "price": data[i].price
-                                 });*/
-                                 //list.push(products);
-                            }
-                        });
-                    }
-                //setProducts();
-                //console.log("asdf", data);
+        getAllProducts().then((response) => {
+                if (response.ok) {
+                    response.json().then((data) => {
+                        setList(data);
+                    });
+                }
             }
         );
     }, []);
 
-        /*
-        for (let i = 0; i < products.length; i++) {
-            list.push({
-                title: products[i],
-                img: products[i].image,
-                price: products[i].price,
-            });
-        }*/
-        return (
-            <Grid.Container gap={2} justify="flex-start">
-                {list.map((item, index) => (
-                    <Grid xs={6} sm={3} key={index}>
-                        <Card isPressable>
-                            <Card.Body css={{p: 0}}>
-                                <Card.Image
-                                    src={item.imageUrl}
-                                    objectFit="cover"
-                                    width="100%"
-                                    height={140}
-                                    alt={item.name}
-                                />
-                            </Card.Body>
-                            <Card.Footer css={{justifyItems: "flex-start"}}>
-                                <Row wrap="wrap" justify="space-between" align="center">
-                                    <Text b>{item.name}</Text>
-                                    <Text css={{color: "$accents7", fontWeight: "$semibold", fontSize: "$sm"}}>
-                                        ${item.price}
-                                    </Text>
+
+    return (
+        <Grid.Container gap={2} justify="flex-start">
+            {list.map((item, index) => (
+                <Grid xs={6} sm={3} key={index}>
+                    <div>
+                    </div>
+                    <Popover>
+                        <Popover.Trigger>
+                            <Card>
+                                <Card.Body css={{p: 0}}>
+                                    <Card.Image
+                                        src={item.imageUrl}
+                                        objectFit="cover"
+                                        width="100%"
+                                        height={140}
+                                        alt={item.name}
+                                    />
+                                </Card.Body>
+                                <Card.Footer css={{justifyItems: "flex-start"}}>
+                                    <Row wrap="wrap" justify="space-between" align="center">
+                                        <Text b>{item.name}</Text>
+                                        <Text css={{color: "$accents7", fontWeight: "$semibold", fontSize: "$sm"}}>
+                                            ${item.price}
+                                        </Text>
+                                    </Row>
+                                </Card.Footer>
+                            </Card>
+                        </Popover.Trigger>
+                        <Popover.Content>
+                            <Grid.Container
+                                css={{borderRadius: "14px", padding: "0.75rem", maxWidth: "330px"}}
+                            >
+                                <Row justify="center" align="center">
+                                    <Text b>Confirm</Text>
                                 </Row>
-                       {/*         <Row>
+                                <Row>
                                     <Text css={{color: "$accents7", fontSize: "$sm"}}>
                                         {item.description}
                                     </Text>
-                                </Row>*/}
-                            </Card.Footer>
-                        </Card>
-                    </Grid>
-                ))}
-            </Grid.Container>
-        );
-    // } else {
-    //     return (
-    //         <div>
-    //             <br/>
-    //             <h1>No products available</h1>
-    //         </div>
-    //     );
-    // }
+                                </Row>
+                                <Grid.Container justify="space-between" alignContent="center">
+                                    <Grid>
+                                        <Button size="sm" light>
+                                            Cancel
+                                        </Button>
+                                    </Grid>
+                                    <Grid>
+                                        <Button size="sm" shadow color="success"
+                                                onClick={() => addProductToLocalStorage(new Product(
+                                                    item.available,
+                                                    item.description,
+                                                    item.imageUrl,
+                                                    item.name,
+                                                    item.price))}
+                                        >
+                                            Add to cart
+                                        </Button>
+                                    </Grid>
+                                </Grid.Container>
+                            </Grid.Container>
+                        </Popover.Content>
+                    </Popover>
+                </Grid>
+
+            ))}
+        </Grid.Container>
+    );
 }

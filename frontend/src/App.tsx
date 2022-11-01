@@ -5,6 +5,7 @@ import NavBar from "./components/molecules/navbar";
 import LoginPage from "./components/pages/login";
 import RegisterPage from "./components/pages/register";
 import LandingScreen from "./components/pages/landing-screen";
+import CartItemsScreen from "./components/pages/cart-items-screen";
 
 import {
   BrowserRouter,
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<LandingScreen />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/cart" element={<CartItemsScreen />} />
           </Routes>
         </NextUIProvider>
       </BrowserRouter>
