@@ -1,18 +1,23 @@
-export class AppUser {
-    id: string | undefined;
+import {bool} from "yup";
+
+export class Product {
+    available: boolean;
+    description: string;
+    imageUrl: string;
     name: string;
-    email: string | undefined;
-    password: string;
+    price: number;
 
     constructor(
-        id: string | undefined,
+        available: boolean,
+        description: string,
+        imageUrl: string,
         name: string,
-        email: string | undefined,
-        password: string
+        price: number
     ) {
-        this.id = id;
+        this.available = available;
+        this.description = description;
+        this.imageUrl = imageUrl;
         this.name = name;
-        this.email = email;
-        this.password = password;
+        this.price = price;
     }
 }
