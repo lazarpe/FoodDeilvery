@@ -11,6 +11,5 @@ export function saveCartItem() {
     return fetch("http://localhost:8080/api/cart-items/save", requestOptions);
 }
 
-export function addItemToCart() {
 
-}
+
