@@ -35,6 +35,10 @@ public class FoodDeliveryApiApplication {
 
                 appUserService.addRoleToUser("admin@mail.com", "ROLE_ADMIN");
             }
+
+            if (productService.getAllProducts().isEmpty()) {
+
+
             productService.saveProduct(new Product(
                     null,
                     "Pizza",
@@ -66,6 +70,7 @@ public class FoodDeliveryApiApplication {
                     "https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80",
                     1.99f,
                     true));
+            }
         };
     }
 

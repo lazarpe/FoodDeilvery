@@ -35,6 +35,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getProductByName(String name) {
+        return productRepository.findProductByName(name);
+    }
+
+    @Override
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }

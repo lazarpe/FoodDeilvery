@@ -39,11 +39,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(POST, "/api/users/login").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/users/register").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/token/refresh/**").permitAll();
-        http.authorizeRequests().antMatchers(GET, "/api/users/**").hasAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers(GET, "/api/users/**").hasAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(GET, "/api/users/name/**").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers(GET, "/api/users/name/").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers(GET, "/api/users/name").hasAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers(POST, "/api/products/**").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(DELETE, "/api/products/**").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(GET, "/api/products/**").hasAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers( "api/cart-items/**").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers( "api/order_request/**").hasAuthority("ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), CustomAuthenticationFilter.class);

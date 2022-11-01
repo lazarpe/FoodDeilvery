@@ -34,7 +34,7 @@ function RegisterPage() {
             console.log(data.access_token);
             localStorage.setItem("access_token", data.access_token);
           });
-          navigation("/");
+          navigation("/login");
         } else {
           console.log("didn't work proper");
         }

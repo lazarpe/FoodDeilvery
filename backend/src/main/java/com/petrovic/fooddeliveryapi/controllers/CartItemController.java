@@ -22,6 +22,12 @@ public class CartItemController {
         cartItemService.getCartItemTotalPrice(cartItemService.getCartItemById(id));
     }
 
+    // great save cart item method
+    @PostMapping("/save")
+    public ResponseEntity<CartItem> saveCartItem(@RequestBody CartItem cartItem) {
+        return ResponseEntity.ok(cartItemService.saveCartItem(cartItem));
+    }
+
     @DeleteMapping("/{id}/delete")
     public void deleteCartItemById(@PathVariable String id) {
         cartItemService.deleteCartItemById(id);

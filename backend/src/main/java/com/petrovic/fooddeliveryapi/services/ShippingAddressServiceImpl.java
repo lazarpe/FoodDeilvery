@@ -1,4 +1,8 @@
 package com.petrovic.fooddeliveryapi.services;
 
-public class ShippingAddressServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service
+public class ShippingAddressServiceImpl implements ShippingAddressService {
+
 }

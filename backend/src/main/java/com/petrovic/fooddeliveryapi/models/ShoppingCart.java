@@ -17,7 +17,7 @@ public class ShoppingCart {
     @Id
     private String id;
     private float total_price;
-    private Date order_date;
+    private Date order_date;    
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
