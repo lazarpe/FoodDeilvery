@@ -13,6 +13,19 @@ export function getAllProducts() {
     return fetch("http://localhost:8080/api/products/", requestOptions);
 }
 
+export function getProductByName(name: string) {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + localStorage.getItem("access_token"));
+
+    const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+    // @ts-ignore
+    return fetch("http://localhost:8080/api/products/name/" + name, requestOptions);
+}
+
 export function addProductToLocalStorage(product: Product) {
     let products: Product[] = [];
     if (localStorage.getItem("product_list") != null) {

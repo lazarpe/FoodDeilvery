@@ -12,6 +12,7 @@ import {
   Routes, //replaces "Switch" used till v5
   Route,
 } from "react-router-dom";
+import CustomerScreen from "./components/pages/custommer-screen";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/cart" element={<CartItemsScreen />} />
+            <Route path="/customer" element={<CustomerScreen />} />
           </Routes>
         </NextUIProvider>
       </BrowserRouter>

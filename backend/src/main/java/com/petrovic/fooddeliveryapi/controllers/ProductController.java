@@ -29,6 +29,11 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getProductById(id));
     }
 
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Product> getProductByName(@PathVariable String name) {
+        return ResponseEntity.ok().body(productService.getProductByName(name));
+    }
+
     @PostMapping("/new")
     public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
         return ResponseEntity.ok().body(productService.saveProduct(product));
