@@ -32,7 +32,7 @@ export default function NavBar({value}: NavbarProps) {
                         <Button
                             auto
                             color="error">
-                            <Link href="/cart">Shopping cart</Link>
+                            <Link href="/#/cart">Shopping cart</Link>
                         </Button>
                     </Navbar.Item>
                     <Navbar.Item>
@@ -49,7 +49,7 @@ export default function NavBar({value}: NavbarProps) {
                             auto
                             flat
                             as={Link}
-                            href="/login"
+                            href="/#/login"
                             onClick={() => {
                                 logout();
                             }}
@@ -69,11 +69,11 @@ export default function NavBar({value}: NavbarProps) {
                     </Text>
                 </Navbar.Brand>
                 <Navbar.Content>
-                    <Navbar.Link color="inherit" href="/login">
+                    <Navbar.Link color="inherit" href="/#/login">
                         Login
                     </Navbar.Link>
                     <Navbar.Item>
-                        <Button auto flat as={Link} href="/register">
+                        <Button auto flat as={Link} href="/#/register">
                             Registration
                         </Button>
                     </Navbar.Item>

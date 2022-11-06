@@ -10,7 +10,7 @@ export function getAllProducts() {
         redirect: 'follow'
     };
     // @ts-ignore
-    return fetch("http://localhost:8080/api/products/", requestOptions);
+    return fetch("http://localhost:8082/api/products/", requestOptions);
 }
 
 export function getProductByName(name: string) {
@@ -23,7 +23,7 @@ export function getProductByName(name: string) {
         redirect: 'follow'
     };
     // @ts-ignore
-    return fetch("http://localhost:8080/api/products/name/" + name, requestOptions);
+    return fetch("http://localhost:8082/api/products/name/" + name, requestOptions);
 }
 
 export function addProductToLocalStorage(product: Product) {

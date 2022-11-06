@@ -2,7 +2,7 @@ import { AppUser } from "../models/user";
 import jwtDecode from "jwt-decode";
 
 export function register(appUser: AppUser) {
-  return fetch("http://localhost:8080/api/users/register", {
+  return fetch("http://localhost:8082/api/users/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export function login(appUser: AppUser) {
   urlencoded.append("name", appUser.name);
   urlencoded.append("password", appUser.password);
 
-  return fetch("http://localhost:8080/api/users/login", {
+  return fetch("http://localhost:8082/api/users/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded", //"Content-Type": "application/json",
@@ -41,7 +41,7 @@ export function getUserByName() {
     const username = token.sub;
     console.log("getUserByName with sub: ", username);
 
-    return fetch("http://localhost:8080/api/users/name/" + username, {
+    return fetch("http://localhost:8082/api/users/name/" + username, {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",

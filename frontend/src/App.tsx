@@ -10,7 +10,7 @@ import CartItemsScreen from "./components/pages/cart-items-screen";
 import {
   BrowserRouter,
   Routes, //replaces "Switch" used till v5
-  Route,
+  Route, HashRouter,
 } from "react-router-dom";
 import CustomerScreen from "./components/pages/custommer-screen";
 
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter basename={"/"}>
         <NextUIProvider>
           <NavBar />
           <Routes>
@@ -31,7 +31,7 @@ function App() {
             <Route path="/customer" element={<CustomerScreen />} />
           </Routes>
         </NextUIProvider>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

@@ -18,6 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
@@ -34,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 new CustomAuthenticationFilter(authenticationManagerBean());
         customAuthenticationFilter.setFilterProcessesUrl("/api/users/login");
         http.csrf().disable();
-        http.cors();
+        http.cors().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
         http.authorizeRequests().antMatchers(POST, "/api/users/login").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/users/register").permitAll();
@@ -46,9 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(POST, "/api/products/**").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(DELETE, "/api/products/**").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(GET, "/api/products/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers( "api/cart-items/**").hasAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers( "api/order_request/test").permitAll();
-        http.authorizeRequests().antMatchers( "api/order_request/**").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers( "/api/cart-items/**").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers( "/api/order_request/test").permitAll();
+        http.authorizeRequests().antMatchers( "/api/order_request/**").hasAuthority("ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), CustomAuthenticationFilter.class);
@@ -58,10 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(List.of("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
-        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+        configuration.setExposedHeaders(List.of("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
