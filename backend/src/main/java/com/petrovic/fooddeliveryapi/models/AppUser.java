@@ -1,5 +1,6 @@
 package com.petrovic.fooddeliveryapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -25,6 +26,7 @@ public class AppUser {
     private Collection<Role> roles = new ArrayList<>();
 
     @OneToOne(mappedBy = "appUser")
+    @JsonIgnore
     private Customer customer;
 
     @PrePersist

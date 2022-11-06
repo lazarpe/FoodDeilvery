@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(DELETE, "/api/products/**").hasAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(GET, "/api/products/**").hasAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers( "api/cart-items/**").hasAuthority("ROLE_USER");
+        http.authorizeRequests().antMatchers( "api/order_request/test").permitAll();
         http.authorizeRequests().antMatchers( "api/order_request/**").hasAuthority("ROLE_USER");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);

@@ -39,7 +39,8 @@ public class OrderRequestServiceImpl implements OrderRequestService {
         shoppingCart = shoppingCartRepository.save(shoppingCart);
 
         ShoppingCart finalShoppingCart = shoppingCart;
-        Arrays.stream(orderRequest.getCartItem()).forEach(cartItem -> {
+        System.out.println();
+        Arrays.stream(orderRequest.getCartItems()).forEach(cartItem -> {
             cartItem.setShoppingCart(finalShoppingCart);
             cartItemRepository.save(cartItem);
         });

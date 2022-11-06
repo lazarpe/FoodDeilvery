@@ -11,5 +11,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OrderRequest {
     private ShoppingCart cart;
-    private CartItem[] cartItem;
+    private CartItem[] cartItems;
 }

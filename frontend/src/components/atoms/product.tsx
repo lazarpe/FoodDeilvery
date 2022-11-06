@@ -69,6 +69,7 @@ export default function ProductCard() {
                                     <Grid>
                                         <Button size="sm" shadow color="success"
                                                 onClick={() => addProductToLocalStorage(new Product(
+                                                    item.id,
                                                     item.available,
                                                     item.description,
                                                     item.imageUrl,

@@ -5,5 +5,5 @@ import com.petrovic.fooddeliveryapi.models.ShoppingCart;
 import org.springframework.stereotype.Service;
 
 public interface OrderRequestService {
-    public ShoppingCart createOrderRequest(OrderRequest orderRequest);
+    ShoppingCart createOrderRequest(OrderRequest orderRequest);
 }

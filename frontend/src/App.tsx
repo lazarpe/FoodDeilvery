@@ -15,6 +15,9 @@ import {
 import CustomerScreen from "./components/pages/custommer-screen";
 
 function App() {
+
+  console.log(JSON.stringify(new Date()));
+
   return (
     <div className="App">
       <BrowserRouter>
