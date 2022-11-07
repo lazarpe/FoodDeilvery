@@ -43,7 +43,7 @@ export default function CartItemsScreen() {
                 <AppButton
                     label="Next"
                     onClick={() => {
-                        window.location.href = "/customer";
+                        window.location.href = "/#/customer";
                     }}
                 />
             </div>
