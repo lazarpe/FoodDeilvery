@@ -8,7 +8,7 @@ export function saveCartItem() {
         redirect: 'follow'
     };
     // @ts-ignore
-    return fetch("http://localhost:8082/api/cart-items/save", requestOptions);
+    return fetch(AppSettings.API_ENDPOINT + "cart-items/save", requestOptions);
 }
 
 

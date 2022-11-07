@@ -1,5 +1,4 @@
-import {getCurrentUser, getUserByName, isLoggedIn} from "../../services/user_service";
-import {getAllProducts} from "../../services/product_service";
+import {isLoggedIn} from "../../services/user_service";
 import React from "react";
 import ProductCard from "../atoms/product";
 

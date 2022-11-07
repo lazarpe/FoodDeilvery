@@ -1,7 +1,6 @@
-import React, {useEffect} from "react";
-import {addProductToLocalStorage, getProductByName, getProductsFromLocalStorage} from "../../services/product_service";
+import React from "react";
+import {getProductsFromLocalStorage} from "../../services/product_service";
 import {Product} from "../../models/product";
-import {Button, Card, Grid, Popover, Row, Text} from "@nextui-org/react";
 import Inputfield from "../atoms/inputfield";
 import AppButton from "../atoms/button";
 import {Customer} from "../../models/Customer";

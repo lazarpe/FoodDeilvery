@@ -1,29 +1,28 @@
 import AppButton from "../atoms/button";
 import Inputfield from "../atoms/inputfield";
-import styled from "styled-components";
 
 interface InputComponentsProps {
-  buttonLabel: string;
+    buttonLabel: string;
 }
 
-function InputComponents({ buttonLabel }: InputComponentsProps) {
-  return (
-    <div>
-      <div>
-        <Inputfield label="Username" placeholder="peter_sunny" />
-      </div>
-      <div>
-        <Inputfield
-          label="Password"
-          placeholder="*********"
-          isPassword={true}
-        />
-      </div>
-      <div>
-        <AppButton label={buttonLabel} />
-      </div>
-    </div>
-  );
+function InputComponents({buttonLabel}: InputComponentsProps) {
+    return (
+        <div>
+            <div>
+                <Inputfield label="Username" placeholder="peter_sunny"/>
+            </div>
+            <div>
+                <Inputfield
+                    label="Password"
+                    placeholder="*********"
+                    isPassword={true}
+                />
+            </div>
+            <div>
+                <AppButton label={buttonLabel}/>
+            </div>
+        </div>
+    );
 }
 
 export default InputComponents;

@@ -1,10 +1,10 @@
-import {Navbar, Button, Link, User, Text} from "@nextui-org/react";
-import {getUserByName, isLoggedIn, logout} from "../../services/user_service";
+import {Button, Link, Navbar, Text, User} from "@nextui-org/react";
+import {isLoggedIn, logout} from "../../services/user_service";
 import React from "react";
 
 interface NavbarProps {
     value?: string;
-};
+}
 
 export default function NavBar({value}: NavbarProps) {
 //    const [user, setUser] = React.useState("");
