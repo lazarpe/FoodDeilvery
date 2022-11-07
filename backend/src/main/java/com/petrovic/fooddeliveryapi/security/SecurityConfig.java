@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.cors().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
+        http.authorizeRequests().antMatchers("/index.html", "*.js", "/", "*.css", "/static/**").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/users/login").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/users/register").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/token/refresh/**").permitAll();

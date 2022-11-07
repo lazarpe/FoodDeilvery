@@ -1,8 +1,5 @@
 import {OrderRequest} from "../models/OrderRequest";
-import {ShoppingCart} from "../models/ShoppingCart";
-import {CartItem} from "../models/CartItem";
-import {Customer} from "../models/Customer";
-import {ShippingAddress} from "../models/ShippingAddress";
+import {AppSettings} from "../app.settings";
 
 export function saveOrder(orderRequest: OrderRequest) {
     const myHeaders = new Headers();
@@ -15,7 +12,7 @@ export function saveOrder(orderRequest: OrderRequest) {
         redirect: 'follow'
     };
     // @ts-ignore
-    return fetch("http://localhost:8080/api/order_request/order", requestOptions);
+    return fetch(AppSettings.API_ENDPOINT + "order_request/order", requestOptions);
 }
 
 

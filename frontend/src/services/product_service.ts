@@ -1,4 +1,5 @@
 import {Product} from "../models/product";
+import {AppSettings} from "../app.settings";
 
 export function getAllProducts() {
     const myHeaders = new Headers();
@@ -10,7 +11,7 @@ export function getAllProducts() {
         redirect: 'follow'
     };
     // @ts-ignore
-    return fetch("http://localhost:8082/api/products/", requestOptions);
+    return fetch(AppSettings.API_ENDPOINT + "products/", requestOptions);
 }
 
 export function getProductByName(name: string) {
@@ -23,7 +24,7 @@ export function getProductByName(name: string) {
         redirect: 'follow'
     };
     // @ts-ignore
-    return fetch("http://localhost:8082/api/products/name/" + name, requestOptions);
+    return fetch(AppSettings.API_ENDPOINT + "products/name/" + name, requestOptions);
 }
 
 export function addProductToLocalStorage(product: Product) {

@@ -1,39 +1,34 @@
 import "./App.css";
-import { NextUIProvider } from "@nextui-org/react";
-import InputComponents from "./components/molecules/input-components";
+import {NextUIProvider} from "@nextui-org/react";
 import NavBar from "./components/molecules/navbar";
 import LoginPage from "./components/pages/login";
 import RegisterPage from "./components/pages/register";
 import LandingScreen from "./components/pages/landing-screen";
 import CartItemsScreen from "./components/pages/cart-items-screen";
 
-import {
-  BrowserRouter,
-  Routes, //replaces "Switch" used till v5
-  Route, HashRouter,
-} from "react-router-dom";
+import {HashRouter, Route, Routes,} from "react-router-dom";
 import CustomerScreen from "./components/pages/custommer-screen";
 
 function App() {
 
-  console.log(JSON.stringify(new Date()));
+    console.log(JSON.stringify(new Date()));
 
-  return (
-    <div className="App">
-      <HashRouter basename={"/"}>
-        <NextUIProvider>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<LandingScreen />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/cart" element={<CartItemsScreen />} />
-            <Route path="/customer" element={<CustomerScreen />} />
-          </Routes>
-        </NextUIProvider>
-      </HashRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+            <HashRouter basename={"/"}>
+                <NextUIProvider>
+                    <NavBar/>
+                    <Routes>
+                        <Route path="/" element={<LandingScreen/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route path="/register" element={<RegisterPage/>}/>
+                        <Route path="/cart" element={<CartItemsScreen/>}/>
+                        <Route path="/customer" element={<CustomerScreen/>}/>
+                    </Routes>
+                </NextUIProvider>
+            </HashRouter>
+        </div>
+    );
 }
 
 export default App;
