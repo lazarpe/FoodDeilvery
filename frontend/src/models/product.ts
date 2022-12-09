@@ -1,5 +1,3 @@
-import {bool} from "yup";
-
 export class Product {
     id: number;
     available: boolean;

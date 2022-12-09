@@ -1,49 +1,50 @@
-import { Input } from "@nextui-org/react";
+import {Input} from "@nextui-org/react";
 import styled from "styled-components";
 
 interface InputfieldProps {
-  value?: string;
-  label: string;
-  placeholder: string;
-  isPassword?: boolean;
-  onChangeText?: (text: string) => void;
+    value?: string;
+    label: string;
+    placeholder: string;
+    isPassword?: boolean;
+    onChangeText?: (text: string) => void;
 }
 
 function Inputfield({
-  value,
-  label,
-  placeholder,
-  isPassword,
-  onChangeText = () => {},
-}: InputfieldProps) {
-  if (isPassword) {
+                        value,
+                        label,
+                        placeholder,
+                        isPassword,
+                        onChangeText = () => {
+                        },
+                    }: InputfieldProps) {
+    if (isPassword) {
+        return (
+            <View>
+                <label>{label}</label>
+                <Input.Password
+                    value={value}
+                    placeholder={placeholder}
+                    style={InputfieldStyle}
+                    onChange={(e) => onChangeText(e.target.value)}
+                />
+            </View>
+        );
+    }
     return (
-      <View>
-        <label>{label}</label>
-        <Input.Password
-          value={value}
-          placeholder={placeholder}
-          style={InputfieldStyle}
-          onChange={(e) => onChangeText(e.target.value)}
-        />
-      </View>
+        <View>
+            <label>{label}</label>
+            <Input
+                value={value}
+                placeholder={placeholder}
+                style={InputfieldStyle}
+                onChange={(e) => onChangeText(e.target.value)}
+            />
+        </View>
     );
-  }
-  return (
-    <View>
-      <label>{label}</label>
-      <Input
-        value={value}
-        placeholder={placeholder}
-        style={InputfieldStyle}
-        onChange={(e) => onChangeText(e.target.value)}
-      />
-    </View>
-  );
 }
 
 const InputfieldStyle = {
-  width: "100%",
+    width: "100%",
 };
 
 const View = styled.div`

@@ -1,5 +1,4 @@
-import {Popover, Card, Grid, Row, Text, Button} from "@nextui-org/react";
-import {isLoggedIn} from "../../services/user_service";
+import {Button, Card, Grid, Popover, Row, Text} from "@nextui-org/react";
 import {addProductToLocalStorage, getAllProducts} from "../../services/product_service";
 import React, {useEffect} from "react";
 import {Product} from "../../models/product";

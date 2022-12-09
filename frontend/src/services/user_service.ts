@@ -1,34 +1,35 @@
-import { AppUser } from "../models/user";
+import {AppUser} from "../models/user";
 import jwtDecode from "jwt-decode";
+import {AppSettings} from "../app.settings";
 
 export function register(appUser: AppUser) {
-  return fetch("http://localhost:8080/api/users/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(appUser),
-  });
+    return fetch(AppSettings.API_ENDPOINT + "users/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(appUser),
+    });
 }
 
 export function login(appUser: AppUser) {
-  var urlencoded = new URLSearchParams();
-  urlencoded.append("name", appUser.name);
-  urlencoded.append("password", appUser.password);
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("name", appUser.name);
+    urlencoded.append("password", appUser.password);
 
-  return fetch("http://localhost:8080/api/users/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded", //"Content-Type": "application/json",
-    },
-    body: urlencoded,
-  });
+    return fetch(AppSettings.API_ENDPOINT + "users/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded", //"Content-Type": "application/json",
+        },
+        body: urlencoded,
+    });
 }
 
 export function logout() {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("username");
-  localStorage.removeItem("email");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("email");
 }
 
 // get user by name
@@ -41,7 +42,7 @@ export function getUserByName() {
     const username = token.sub;
     console.log("getUserByName with sub: ", username);
 
-    return fetch("http://localhost:8080/api/users/name/" + username, {
+    return fetch(AppSettings.API_ENDPOINT + "users/name/" + username, {
         method: "GET",
         headers: myHeaders,
         redirect: "follow",
@@ -54,5 +55,5 @@ export function getCurrentUser() {
 }
 
 export function isLoggedIn() {
-  return localStorage.getItem("access_token") != null;
+    return localStorage.getItem("access_token") != null;
 }

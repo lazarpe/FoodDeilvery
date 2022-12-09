@@ -1,5 +1,3 @@
-import {ShippingAddress} from "./ShippingAddress";
-import {Customer} from "./Customer";
 import {CartItem} from "./CartItem";
 import {ShoppingCart} from "./ShoppingCart";
 

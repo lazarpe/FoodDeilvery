@@ -5,7 +5,6 @@ import {getUserByName, login} from "../../services/user_service";
 import {AppUser} from "../../models/user";
 import React from "react";
 import {useNavigate} from "react-router";
-import {Product} from "../../models/product";
 
 const schema = yup.object().shape({
     name: yup.string().required(),

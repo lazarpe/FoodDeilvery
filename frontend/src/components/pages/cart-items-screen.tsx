@@ -1,8 +1,7 @@
-import React, {useEffect} from "react";
-import {addProductToLocalStorage, getProductByName, getProductsFromLocalStorage} from "../../services/product_service";
+import React from "react";
+import {getProductsFromLocalStorage} from "../../services/product_service";
 import {Product} from "../../models/product";
-import {Button, Card, Grid, Popover, Row, Text} from "@nextui-org/react";
-import CustomerScreen from "./custommer-screen";
+import {Card, Grid, Row, Text} from "@nextui-org/react";
 import AppButton from "../atoms/button";
 
 export default function CartItemsScreen() {
